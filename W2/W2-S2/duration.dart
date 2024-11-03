@@ -27,12 +27,23 @@ class CustomDuration {
     return this._millisecond > other._millisecond;
   }
 
-  String display() {
-    int seconds = (_millisecond % 60000) ~/ 1000;
-    int minutes = (_millisecond % 3600000) ~/ (60000);
-    int hours = (_millisecond ~/ 3600000);
-    return 'Time : $hours hours, $minutes minutes, $seconds seconds';
+   // Display the duration in a readable format
+  @override
+  String toString() {
+    int seconds = (_millisecond / 1000).round();  //result in decimal: use round() to round number to nearest interget.
+    int minutes = (seconds / 60).floor(); // get whole minute not include remaind seconds.
+    seconds = seconds % 60;
+    int hours = (minutes / 60).floor();
+    minutes = minutes % 60;
+    return '$hours hours, $minutes minutes, $seconds seconds';
   }
+
+  // String display() {
+  //   int seconds = (_millisecond % 60000) ~/ 1000;
+  //   int minutes = (_millisecond % 3600000) ~/ (60000);
+  //   int hours = (_millisecond ~/ 3600000);
+  //   return 'Time : $hours hours, $minutes minutes, $seconds seconds';
+  // }
 }
 
 void main() {
@@ -41,8 +52,8 @@ void main() {
   CustomDuration time3 = CustomDuration.fromSecond(10);
 
   CustomDuration addTwoDuration = time1 + time3;
-  print('Adding duration: ${addTwoDuration.display()}');
+  print('Adding duration: ${addTwoDuration.toString()}');
 
   CustomDuration minusTwoDuration = time1 - time2;
-  print('Minus duration: ${minusTwoDuration.display()}');
+  print('Minus duration: ${minusTwoDuration.toString()}');
 }
