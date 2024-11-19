@@ -1,0 +1,6 @@
+name: quiz_project
+description: A simple Dart quiz project
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+dependencies:
+  collection: ^1.16.0
