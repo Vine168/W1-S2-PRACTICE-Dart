@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  uuid: ^3.0.7
   flutter:
     sdk: flutter
 
@@ -62,6 +63,7 @@ flutter:
   assets:
     - assets/images/image1.jpg
     - assets/images/image2.jpg
+    - assets/images/quiz-logo.png
 
   #   - images/a_dot_ham.jpeg
 

@@ -1,47 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/exercise/W6/W6-S2/EXERCISE-2/data/profile_data.dart';
+import 'package:flutter_application_1/exercise/W6/W6-S2/EXERCISE-2/model/profile_tile_model.dart';
 
-class ProfileData {
-  final String name;
-  final String position;
-  final String avatarUrl;
-  final List<TileData> tiles;
-
-  ProfileData({
-    required this.name,
-    required this.position,
-    required this.avatarUrl,
-    required this.tiles,
-  });
-}
-
-class TileData {
-  final IconData icon;
-  final String title;
-  final String data;
-
-  TileData({
-    required this.icon,
-    required this.title,
-    required this.data, required String value,
-  });
-}
-final ProfileData vineProfile = ProfileData(
-  name: "Chim Vine",
-  position: "Flutter Developer",
-  avatarUrl: 'assets/images/image2.jpg',
-  tiles: [
-    TileData(icon: Icons.phone, title: "Phone Number", data: "+855 884 834 024", value: ''),
-    TileData(icon: Icons.location_on, title: "Address", data: "Cambodia", value: ''),
-  ],
-);
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: ProfileApp(profile: vineProfile),
   ));
 }
-
 const Color mainColor = Color(0xff5E9FCD);
+
 class ProfileApp extends StatelessWidget {
   final ProfileData profile;
 
@@ -90,13 +58,14 @@ class ProfileApp extends StatelessWidget {
           ...profile.tiles.map((tile) => ProfileTile(
                 icon: tile.icon,
                 title: tile.title,
-                data: tile.data,
+                data: tile.value,
               )),
         ],
       ),
     );
   }
 }
+
 class ProfileTile extends StatelessWidget {
   final IconData icon;
   final String title;
