@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/app_button.dart';
 
+// This is a function that take time to give the ui to the user interface
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
   @override

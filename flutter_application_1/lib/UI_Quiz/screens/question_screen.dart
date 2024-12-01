@@ -9,7 +9,7 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionScreen> {
   final List<Map<String, Object>> _questions = [
     {
-      'question': 'What is the short form of the word Cambodia  of digital technology',
+      'question': 'What is the short form of the word Cambodia Academy of Digital Technology?',
       'answers': ['CIDD', 'CATT', 'CADT', 'CATD'],
       'correctAnswer': 'CADT',
     },
