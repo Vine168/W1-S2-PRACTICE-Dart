@@ -32,13 +32,14 @@ class _ExpenseFormState extends State<ExpenseForm> {
     Navigator.pop(context);
   }
 
-  // show date picker when clicked
+  // Show date picker when clicked
   Future<void> _pickDate() async {
     final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: _selectedDate,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100));
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
 
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
@@ -47,22 +48,58 @@ class _ExpenseFormState extends State<ExpenseForm> {
     }
   }
 
+  // Show an alert dialog
+  void _showAlertDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Validation Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void onAdd() {
-    // 1- Get the values from inputs
-    String title = _titleController.text;
-    double amount = double.parse(_valueController.text);
+    // Validate inputs
+    if (_titleController.text.trim().isEmpty) {
+      _showAlertDialog('Please enter a title for the expense.');
+      return;
+    }
 
-    // 2- Create the expense
+    if (_valueController.text.trim().isEmpty) {
+      _showAlertDialog('Please enter an amount for the expense.');
+      return;
+    }
+
+    // Parse the amount safely
+    double? amount = double.tryParse(_valueController.text.trim());
+    if (amount == null || amount <= 0) {
+      _showAlertDialog('Please enter a valid amount greater than zero.');
+      return;
+    }
+
+    // Create the expense
     Expense expense = Expense(
-        title: title,
-        amount: amount,
-        date: _selectedDate, //  TODO :  For now it s a fake data
-        category: _selectedCategory!); //  TODO :  For now it s a fake data
+      title: _titleController.text.trim(),
+      amount: amount,
+      date: _selectedDate,
+      category: _selectedCategory!,
+    );
 
-    // 3- Ask the parent to add the expense
+    // Ask the parent to add the expense
     widget.onCreated(expense);
 
-    // 4- Close modal
+    // Close modal
     Navigator.pop(context);
   }
 
@@ -81,9 +118,9 @@ class _ExpenseFormState extends State<ExpenseForm> {
             ),
           ),
           TextField(
-            keyboardType: TextInputType.number,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
             ],
             controller: _valueController,
             maxLength: 50,
@@ -105,11 +142,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
               return DropdownMenuItem<Category>(
                 value: category,
                 child: Text(
-                  category
-                      .toString()
-                      .split('.')
-                      .last
-                      .toUpperCase(), // Convert to uppercase
+                  category.toString().split('.').last.toUpperCase(),
                   style: const TextStyle(fontSize: 16),
                 ),
               );
@@ -119,12 +152,12 @@ class _ExpenseFormState extends State<ExpenseForm> {
           Row(
             children: [
               Text(
-                "Date: ${DateFormat.yMd().format(_selectedDate)}", // Format selected date
+                "Date: ${DateFormat.yMd().format(_selectedDate)}",
                 style: const TextStyle(fontSize: 16),
               ),
               IconButton(
                 icon: const Icon(Icons.calendar_today),
-                onPressed: _pickDate, // Show the date picker when clicked
+                onPressed: _pickDate,
               ),
             ],
           ),
@@ -132,13 +165,13 @@ class _ExpenseFormState extends State<ExpenseForm> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(onPressed: onCancel, child: const Text('Cancel')),
-              const SizedBox(
-                width: 20,
-              ),
+              const SizedBox(width: 20),
               ElevatedButton(
-                  onPressed: onAdd, child: const Text('Save Expense')),
+                onPressed: onAdd,
+                child: const Text('Save Expense'),
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

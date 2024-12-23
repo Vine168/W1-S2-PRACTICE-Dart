@@ -32,6 +32,12 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.17.0
+  provider: ^6.0.0
+  audioplayers: ^1.0.1
+  file_picker: ^5.2.4
+  path_provider: ^2.0.13
+  permission_handler: ^10.2.0
+  shared_preferences: ^2.1.1 # Use the latest version
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -61,9 +67,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/image1.jpg
-    - assets/images/image2.jpg
-    - assets/images/quiz-logo.png
+    - assets/images/
+    - assets/music/music1.mp3
+    - assets/music/music2.mp3
+    - assets/music/music3.mp3
+    - assets/music/music4.mp3
+
+
 
   #   - images/a_dot_ham.jpeg
 
