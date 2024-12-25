@@ -1,5 +1,8 @@
+// import 'package:app_project/test_app/motivation_song.dart';
 import 'package:flutter/material.dart';
+// import '../../screens/motivation_screen.dart';
 import '../../screens/motivation_screen.dart';
+// import '../../screens/motivation_screen.dart';
 import '../../screens/recent_screen.dart';
 import '../../screens/popular_screen.dart';
 import '../../screens/random_screen.dart';
@@ -22,24 +25,24 @@ class GridSection extends StatelessWidget {
         crossAxisSpacing: 12,
         children: [
           SongCard(
-            imagePath: 'assets/images/image1.jpg',
+            imagePath: 'assets/images/motivation.jpg',
             title: 'Motivation Song',
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => MotivationSongPage())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => MotivationScreen())),
           ),
           SongCard(
-            imagePath: 'assets/images/image2.jpg',
+            imagePath: 'assets/images/popular.jpg',
             title: 'Popular Song',
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => PopularSongPage())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => PopularScreen())),
           ),
           SongCard(
-            imagePath: 'assets/images/image3.jpg',
+            imagePath: 'assets/images/recent.jpg',
             title: 'Recent Song',
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => RecentSongPage())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => RecentScreen())),
           ),
           SongCard(
-            imagePath: 'assets/images/image4.jpg',
+            imagePath: 'assets/images/random.jpg',
             title: 'Random Song',
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => RandomSongPage())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => RandomScreen())),
           ),
         ],
       ),

@@ -9,7 +9,7 @@ class FavoriteScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("Favorite Songs"),
+        title: const Text("Favorite Songs", style: TextStyle(color: Colors.white)),
       ),
       body: ValueListenableBuilder<List<Map<String, dynamic>>>(
         valueListenable: favoritesManager.favoritesNotifier,
@@ -29,7 +29,14 @@ class FavoriteScreen extends StatelessWidget {
               final song = favoriteSongs[index];
               return ListTile(
                 leading: song['imagePath'] != null
-                    ? Image.asset(song['imagePath']!)
+                    ? SizedBox(
+                        width: 50,  // Set the width of the image
+                        height: 50, // Set the height of the image
+                        child: Image.asset(
+                          song['imagePath']!,
+                          fit: BoxFit.cover,  // Make sure the image is scaled properly
+                        ),
+                      )
                     : const Icon(Icons.music_note, color: Colors.white),
                 title: Text(
                   song['title'] ?? 'Unknown Title',

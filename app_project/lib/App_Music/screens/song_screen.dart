@@ -133,6 +133,7 @@ class _SongScreenState extends State<SongScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(song['title'], style: const TextStyle(color: Colors.white)),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       backgroundColor: Colors.black,
       body: Center(

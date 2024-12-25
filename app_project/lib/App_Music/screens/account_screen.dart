@@ -4,7 +4,7 @@ class AccountScreen extends StatelessWidget {
   final String userName = "Chim Vine";
   final String userId = "0987654";
   final String userEmail = "chimvine777@gmail.com";
-  final String profileImageUrl = "assets/images/image1.jpg"; // Add your profile image path here
+  final String profileImageUrl = "assets/images/profile.jpg"; // Add your profile image path here
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class AccountScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("Account"),
+        title: const Text("Account", style: TextStyle(color: Colors.white),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -51,7 +51,7 @@ class AccountScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
-                child: const Text("Sign Out"),
+                child: const Text("Sign Out", style: TextStyle(color: Colors.white),),
               ),
             ),
           ],

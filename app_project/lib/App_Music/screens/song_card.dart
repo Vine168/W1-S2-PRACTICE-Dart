@@ -1,28 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class SongCard extends StatelessWidget {
-//   final String imagePath;
-//   final String title;
-//   final VoidCallBack onTap;
-
-//   const SongCard({
-//     required this.imagePath,
-//     required this.title,
-//     required this.onTap});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(12),
-//         image: DecorationImage(
-//           image: AssetImage(imagePath),
-//           fit: BoxFit.cover,
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 import 'package:flutter/material.dart';
 

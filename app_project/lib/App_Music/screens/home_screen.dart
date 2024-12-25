@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/home_screen/bottom_nav_bar.dart';
 import '../widgets/home_screen/grid_section.dart';
 import '../widgets/home_screen/list_section.dart';
-import '../widgets/mini_player.dart';
+// import '../widgets/mini_player.dart';
 import '../models/favorites_manager.dart';
 import 'search_screen.dart';
 import 'account_screen.dart';
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             index: _currentIndex,
             children: _pages,
           ),
-          MiniPlayer(), // Mini-player appears across all pages
+          // MiniPlayer(), // Mini-player appears across all pages
         ],
       ),
       bottomNavigationBar: BottomNavBar(

@@ -1,41 +1,75 @@
 import 'package:flutter/material.dart';
 import '../../screens/song_screen.dart';
 
-class ListSection extends StatelessWidget {
+class ListSection extends StatefulWidget {
+  final Function(Map<String, dynamic>) onSongFavoriteToggle;
+
+  ListSection({required this.onSongFavoriteToggle});
+
+  @override
+  _ListSectionState createState() => _ListSectionState();
+}
+
+class _ListSectionState extends State<ListSection> {
+  // The song list (this will now be mutable)
   final List<Map<String, dynamic>> songList = [
     {
-      'title': 'Motivation Song',
-      'artist': 'John Doe',
+      'title': 'Die With A Smile',
+      'artist': 'Lady Gaga, Bruno Mars',
       'imagePath': 'assets/images/image1.jpg',
       'mp3Path': 'music/music1.mp3',
       'isFavorite': false,
     },
     {
-      'title': 'Popular Song',
-      'artist': 'Jane Smith',
+      'title': 'Until I Found You ',
+      'artist': 'Stephen Sanchez, Em Beihold',
       'imagePath': 'assets/images/image2.jpg',
       'mp3Path': 'music/music2.mp3',
       'isFavorite': false,
     },
     {
-      'title': 'Recent Song',
-      'artist': 'The Rockstars',
+      'title': ' Here With Me ',
+      'artist': 'd4vd ',
       'imagePath': 'assets/images/image3.jpg',
       'mp3Path': 'music/music3.mp3',
       'isFavorite': false,
     },
     {
-      'title': 'Random Song',
-      'artist': 'DJ Random',
+      'title': 'It is You',
+      'artist': 'Ali Gatie',
       'imagePath': 'assets/images/image4.jpg',
       'mp3Path': 'music/music4.mp3',
       'isFavorite': false,
     },
+    {
+      'title': 'Those Eyes',
+      'artist': 'New West',
+      'imagePath': 'assets/images/image5.jpg',
+      'mp3Path': 'music/music5.mp3',
+      'isFavorite': false,
+    },
+    {
+      'title': 'Can I Be Him',
+      'artist': 'James Arthur ',
+      'imagePath': 'assets/images/image6.jpg',
+      'mp3Path': 'music/music6.mp3',
+      'isFavorite': false,
+    },
+    {
+      'title': 'Look After You',
+      'artist': 'The Fray',
+      'imagePath': 'assets/images/image7.jpg',
+      'mp3Path': 'music/music7.mp3',
+      'isFavorite': false,
+    },
+    {
+      'title': 'Waiting Room',
+      'artist': 'Phoebe Bridgers',
+      'imagePath': 'assets/images/image8.jpg',
+      'mp3Path': 'music/music8.mp3',
+      'isFavorite': false,
+    },
   ];
-
-  final Function(Map<String, dynamic>) onSongFavoriteToggle;
-
-  ListSection({required this.onSongFavoriteToggle});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +100,12 @@ class ListSection extends StatelessWidget {
             final song = songList[index];
             return ListTile(
               leading: song['imagePath'] != null
-                  ? Image.asset(song['imagePath']!)
+                  ? Image.asset(
+                      song['imagePath']!,
+                      width: 50, // Set fixed size for image
+                      height: 50,
+                      fit: BoxFit.cover, // Ensure the image is scaled to fit
+                    )
                   : const Icon(Icons.music_note, color: Colors.white),
               title: Text(
                 song['title'] ?? 'Unknown Title',
@@ -82,10 +121,11 @@ class ListSection extends StatelessWidget {
                   color: song['isFavorite'] ? Colors.red : Colors.grey,
                 ),
                 onPressed: () {
-                  // Toggle favorite status
-                  onSongFavoriteToggle(song);
-                  // Update the song's favorite status locally
-                  song['isFavorite'] = !song['isFavorite'];
+                  setState(() {
+                    // Toggle favorite status
+                    song['isFavorite'] = !song['isFavorite'];
+                  });
+                  widget.onSongFavoriteToggle(song); // Call the callback to notify the parent
                 },
               ),
               onTap: () {
